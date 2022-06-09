@@ -1,0 +1,8 @@
+D:\Users\Steven\source\repos\AutoUpdateRef\bin\Debug\AutoUpdateRef.dll
+D:\Users\Steven\source\repos\AutoUpdateRef\bin\Debug\AutoUpdateRef.pdb
+D:\Users\Steven\source\repos\AutoUpdateRef\obj\Debug\AutoUpdateRef.RefUpdateForm.resources
+D:\Users\Steven\source\repos\AutoUpdateRef\obj\Debug\AutoUpdateRef.csproj.GenerateResource.cache
+D:\Users\Steven\source\repos\AutoUpdateRef\obj\Debug\AutoUpdateRef.csproj.CoreCompileInputs.cache
+D:\Users\Steven\source\repos\AutoUpdateRef\obj\Debug\AutoUpdateRef.dll
+D:\Users\Steven\source\repos\AutoUpdateRef\obj\Debug\AutoUpdateRef.pdb
+D:\Users\Steven\source\repos\AutoUpdateRef\obj\Debug\AutoUpdateRef.csproj.AssemblyReference.cache
