@@ -8,12 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace AutoUpdateRef
 {
+    
     public partial class RefUpdateForm : Form
     {
-
+        
         public RefUpdateForm()
         {
             InitializeComponent();
@@ -21,7 +23,8 @@ namespace AutoUpdateRef
 
         private void RefUpdateForm_Load(object sender, EventArgs e)
         {
-            PopulateListbox(txtPath.Text.Trim());
+
+            //PopulateListbox(txtPath.Text.Trim());
 
         }
 
@@ -34,50 +37,56 @@ namespace AutoUpdateRef
 
                 // Load all the files into the listbox
                 lstDwgs.DataSource = files;
-                lblInfo.Text = "Total number of drawingings = " + lstDwgs.Items.Count;
+                toolStripStatusLabel1.Text = "Total number of drawingings = " + lstDwgs.Items.Count;
             }
         }
-
+        
         private void btnBrowse_Click(object sender, EventArgs e)
         {
-            using (var fbd = new FolderBrowserDialog())
+            CommonOpenFileDialog dialog = new CommonOpenFileDialog();
+            // switch to make the file dialog to accept folder in place of file selector
+            dialog.IsFolderPicker = true;
+            if (dialog.ShowDialog() == CommonFileDialogResult.Ok)//(openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                DialogResult result = fbd.ShowDialog();
+                // send user selected path to function call
+                var docPath = dialog.FileName;
+                Globals.DwgsFilePath = docPath;
 
-                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
-                {
-                    PopulateListbox(fbd.SelectedPath);
-                }
+                // get files with directory
+                string[] files = Directory.GetFiles(docPath, "*.dwg");
+
+                PopulateListbox(docPath);
             }
         }
-
         private void btnUpdateRef_Click(object sender, EventArgs e)
         {
             int i = 1;
             AttachRef util = new AttachRef();
             int totalCount = lstDwgs.Items.Count;
+            Globals.ReferenceFilter = txtRefFilter.Text;
 
             // Loop through
             foreach (string dwgFile in lstDwgs.Items)
-            {
-                lblInfo.Text = "Processing ( " + i.ToString() + " of " + totalCount + ") : " + dwgFile;
-                lblInfo.ForeColor = Color.Green;
-                string newReferenceFile = txtRefNew.Text;
-                string ReferenceFilter = txtRefFilter.Text;
-                if (newReferenceFile != null | ReferenceFilter != null)
+            {                
+                toolStripStatusLabel1.Text = "Processing ( " + i.ToString() + " of " + totalCount + ") : " + dwgFile;
+                toolStripStatusLabel1.ForeColor = Color.Green;
+
+                if (Globals.newReferenceName != null | Globals.ReferenceFilter != null | Globals.newReferencePath != null)
                 {
-                    util.AttachingRef(dwgFile, newReferenceFile, ReferenceFilter);
+                    util.AttachingRef(dwgFile, Globals.newReferenceName, Globals.newReferencePath, Globals.ReferenceFilter);
                 }
-                
+
                 i += 1;
             }
-            lblInfo.Text = "Updating of Reference files completed successfuly!";
+            
+            toolStripStatusLabel1.Text = "Updating of Reference files completed successfuly!";
+            toolStripStatusLabel1.ForeColor = Color.Green;
         }
 
-        private void button1_Click(object sender, EventArgs e)// get the reference file name and path
-        {
-            
+        
+        private void SelectNewRF_Click(object sender, EventArgs e)// get the reference file name and path
 
+        {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.InitialDirectory = "c:\\";
@@ -89,12 +98,22 @@ namespace AutoUpdateRef
                 {
                     //Get the path of specified file
                     string filePath = openFileDialog.FileName;
-                    
-
-                    txtRefNew.Text = filePath;
-                                                                                
+                    Globals.newReferenceName = Path.GetFileNameWithoutExtension(filePath);
+                    lblRefName.Text = Globals.newReferenceName;
+                    // newReferencePath then repalce dwgsPath with "."
+                    Globals.newReferencePath = filePath.Replace(Globals.DwgsFilePath, ".");
+                    lblRefPath.Text = Globals.newReferencePath;
                 }
             }
         }
     }
+    public static class Globals
+    {
+        public static String DwgsFilePath; // Modifiable Global varibles
+        public static String newReferenceName; // Modifiable Global varibles
+        public static String newReferencePath; // Modifiable Global varibles
+        public static String ReferenceFilter; // Modifiable Global varibles
+
+    }
+
 }

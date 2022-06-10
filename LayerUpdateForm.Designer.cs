@@ -30,41 +30,39 @@ namespace AutoUpdateRef
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.txtPath = new System.Windows.Forms.TextBox();
             this.btnBrowse = new System.Windows.Forms.Button();
             this.lstDwgs = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtRefFilter = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtRefNew = new System.Windows.Forms.TextBox();
-            this.lblInfo = new System.Windows.Forms.Label();
             this.btnUpdateRef = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.SelectNewRF = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lblRefName = new System.Windows.Forms.Label();
+            this.lblRefPath = new System.Windows.Forms.Label();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 78);
+            this.label1.Location = new System.Drawing.Point(22, 101);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(334, 13);
+            this.label1.Size = new System.Drawing.Size(295, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Enter Folder Path or Browse to folder location of DWG files to update:";
-            // 
-            // txtPath
-            // 
-            this.txtPath.Location = new System.Drawing.Point(25, 98);
-            this.txtPath.Name = "txtPath";
-            this.txtPath.Size = new System.Drawing.Size(343, 20);
-            this.txtPath.TabIndex = 1;
+            this.label1.Text = "Browse to folder location of DWG files to update References:";
             // 
             // btnBrowse
             // 
-            this.btnBrowse.Location = new System.Drawing.Point(374, 78);
+            this.btnBrowse.Location = new System.Drawing.Point(332, 96);
             this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(111, 40);
+            this.btnBrowse.Size = new System.Drawing.Size(153, 26);
             this.btnBrowse.TabIndex = 2;
             this.btnBrowse.Text = "Browse";
             this.btnBrowse.UseVisualStyleBackColor = true;
@@ -73,9 +71,9 @@ namespace AutoUpdateRef
             // lstDwgs
             // 
             this.lstDwgs.FormattingEnabled = true;
-            this.lstDwgs.Location = new System.Drawing.Point(25, 137);
+            this.lstDwgs.Location = new System.Drawing.Point(25, 150);
             this.lstDwgs.Name = "lstDwgs";
-            this.lstDwgs.Size = new System.Drawing.Size(460, 290);
+            this.lstDwgs.Size = new System.Drawing.Size(460, 277);
             this.lstDwgs.TabIndex = 3;
             // 
             // label2
@@ -100,85 +98,140 @@ namespace AutoUpdateRef
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(22, 484);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(154, 13);
+            this.label3.Size = new System.Drawing.Size(239, 13);
             this.label3.TabIndex = 6;
-            this.label3.Text = "New Replacement  Reference:";
-            // 
-            // txtRefNew
-            // 
-            this.txtRefNew.Location = new System.Drawing.Point(182, 481);
-            this.txtRefNew.Name = "txtRefNew";
-            this.txtRefNew.Size = new System.Drawing.Size(183, 20);
-            this.txtRefNew.TabIndex = 7;
-            // 
-            // lblInfo
-            // 
-            this.lblInfo.AutoSize = true;
-            this.lblInfo.Location = new System.Drawing.Point(22, 514);
-            this.lblInfo.Name = "lblInfo";
-            this.lblInfo.Size = new System.Drawing.Size(43, 13);
-            this.lblInfo.TabIndex = 8;
-            this.lblInfo.Text = "Info......";
+            this.label3.Text = "Browse and select the New DWG Reference file:";
             // 
             // btnUpdateRef
             // 
             this.btnUpdateRef.BackColor = System.Drawing.Color.Aqua;
             this.btnUpdateRef.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnUpdateRef.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdateRef.Location = new System.Drawing.Point(358, 531);
+            this.btnUpdateRef.Location = new System.Drawing.Point(276, 521);
             this.btnUpdateRef.Name = "btnUpdateRef";
-            this.btnUpdateRef.Size = new System.Drawing.Size(127, 30);
+            this.btnUpdateRef.Size = new System.Drawing.Size(209, 39);
             this.btnUpdateRef.TabIndex = 9;
             this.btnUpdateRef.Text = "Update Reference";
             this.btnUpdateRef.UseVisualStyleBackColor = false;
             this.btnUpdateRef.Click += new System.EventHandler(this.btnUpdateRef_Click);
             // 
-            // button1
+            // SelectNewRF
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Location = new System.Drawing.Point(374, 481);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(111, 20);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "Select New Ref File";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.SelectNewRF.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.SelectNewRF.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.SelectNewRF.Location = new System.Drawing.Point(276, 480);
+            this.SelectNewRF.Name = "SelectNewRF";
+            this.SelectNewRF.Size = new System.Drawing.Size(209, 26);
+            this.SelectNewRF.TabIndex = 10;
+            this.SelectNewRF.Text = "Select New Ref File";
+            this.SelectNewRF.UseVisualStyleBackColor = false;
+            this.SelectNewRF.Click += new System.EventHandler(this.SelectNewRF_Click);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::AutoUpdateRef.Properties.Resources.CP_HorizontalwithTagline_3C;
             this.pictureBox1.Location = new System.Drawing.Point(25, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(460, 53);
+            this.pictureBox1.Size = new System.Drawing.Size(460, 64);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 11;
             this.pictureBox1.TabStop = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(22, 131);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(248, 13);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "List of drawings in the directory that wil be updated:";
+            // 
+            // lblRefName
+            // 
+            this.lblRefName.AutoSize = true;
+            this.lblRefName.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRefName.Location = new System.Drawing.Point(22, 527);
+            this.lblRefName.Name = "lblRefName";
+            this.lblRefName.Size = new System.Drawing.Size(89, 15);
+            this.lblRefName.TabIndex = 13;
+            this.lblRefName.Text = "Referenc file Name:";
+            // 
+            // lblRefPath
+            // 
+            this.lblRefPath.AutoSize = true;
+            this.lblRefPath.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRefPath.Location = new System.Drawing.Point(22, 561);
+            this.lblRefPath.Name = "lblRefPath";
+            this.lblRefPath.Size = new System.Drawing.Size(94, 15);
+            this.lblRefPath.TabIndex = 14;
+            this.lblRefPath.Text = "Reference File Path :";
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 579);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(497, 22);
+            this.statusStrip1.TabIndex = 15;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(33, 17);
+            this.toolStripStatusLabel1.Text = "Info....";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(22, 513);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(135, 13);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "New Reference File Name:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(22, 547);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(129, 13);
+            this.label6.TabIndex = 17;
+            this.label6.Text = "New Reference File Path:";
             // 
             // RefUpdateForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(497, 577);
+            this.ClientSize = new System.Drawing.Size(497, 601);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.lblRefPath);
+            this.Controls.Add(this.lblRefName);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.SelectNewRF);
             this.Controls.Add(this.btnUpdateRef);
-            this.Controls.Add(this.lblInfo);
-            this.Controls.Add(this.txtRefNew);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtRefFilter);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lstDwgs);
             this.Controls.Add(this.btnBrowse);
-            this.Controls.Add(this.txtPath);
             this.Controls.Add(this.label1);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(513, 640);
+            this.MinimumSize = new System.Drawing.Size(513, 640);
             this.Name = "RefUpdateForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Reference Update Form";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.RefUpdateForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -187,16 +240,20 @@ namespace AutoUpdateRef
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtPath;
         private System.Windows.Forms.Button btnBrowse;
         private System.Windows.Forms.ListBox lstDwgs;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtRefFilter;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtRefNew;
-        private System.Windows.Forms.Label lblInfo;
         private System.Windows.Forms.Button btnUpdateRef;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button SelectNewRF;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblRefName;
+        private System.Windows.Forms.Label lblRefPath;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
     }
 }

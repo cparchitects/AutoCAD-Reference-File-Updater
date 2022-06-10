@@ -15,7 +15,7 @@ namespace AutoUpdateRef
             layerForm.Show();
         }
 
-        public void AttachingRef(string dwgPath, string filePath, string filter)
+        public void AttachingRef(string dwgPath, string refName, string refPath, string filter)
         {
             // Get the current database and start a transaction
             Document doc = Application.DocumentManager.Open(dwgPath);
@@ -45,13 +45,8 @@ namespace AutoUpdateRef
                             BlockTableRecord btr = (BlockTableRecord)acTrans.GetObject(xrNode.BlockTableRecordId, OpenMode.ForWrite);
 
                             acCurDb.XrefEditEnabled = true;
-
-                            string newpath = filePath;
-                            string fileName = Path.GetFileNameWithoutExtension(newpath);
-                            //string newpath = @".\Title block\X_Titleblock30x42_NBTS XXX.dwg";// new path location need to make this a selection then save in variable
-                            //btr.Name = "X_Titleblock30x42_NBTS XXX";//need to create this from the new path element then save in variable
-                            btr.Name = fileName;
-                            btr.PathName = newpath;
+                            btr.Name = refName;
+                            btr.PathName = refPath;
                             break;
                         }
                         //// this section not needed just left in for future reference
