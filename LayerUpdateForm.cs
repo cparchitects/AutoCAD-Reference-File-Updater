@@ -13,6 +13,7 @@ namespace AutoUpdateRef
 {
     public partial class RefUpdateForm : Form
     {
+
         public RefUpdateForm()
         {
             InitializeComponent();
@@ -61,15 +62,39 @@ namespace AutoUpdateRef
             {
                 lblInfo.Text = "Processing ( " + i.ToString() + " of " + totalCount + ") : " + dwgFile;
                 lblInfo.ForeColor = Color.Green;
-                util.AttachingRef(dwgFile);
+                string newReferenceFile = txtRefNew.Text;
+                string ReferenceFilter = txtRefFilter.Text;
+                if (newReferenceFile != null | ReferenceFilter != null)
+                {
+                    util.AttachingRef(dwgFile, newReferenceFile, ReferenceFilter);
+                }
+                
                 i += 1;
             }
             lblInfo.Text = "Updating of Reference files completed successfuly!";
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)// get the reference file name and path
         {
+            
 
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.Filter = "dwg files (*.dwg)|*.dwg";
+                openFileDialog.FilterIndex = 2;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    //Get the path of specified file
+                    string filePath = openFileDialog.FileName;
+                    
+
+                    txtRefNew.Text = filePath;
+                                                                                
+                }
+            }
         }
     }
 }

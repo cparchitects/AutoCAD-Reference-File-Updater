@@ -34,9 +34,9 @@ namespace AutoUpdateRef
             this.btnBrowse = new System.Windows.Forms.Button();
             this.lstDwgs = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtLayerOld = new System.Windows.Forms.TextBox();
+            this.txtRefFilter = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtLayerNew = new System.Windows.Forms.TextBox();
+            this.txtRefNew = new System.Windows.Forms.TextBox();
             this.lblInfo = new System.Windows.Forms.Label();
             this.btnUpdateRef = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -88,12 +88,13 @@ namespace AutoUpdateRef
             this.label2.TabIndex = 4;
             this.label2.Text = "Enter Reference File Name Characters to filter:";
             // 
-            // txtLayerOld
+            // txtRefFilter
             // 
-            this.txtLayerOld.Location = new System.Drawing.Point(254, 445);
-            this.txtLayerOld.Name = "txtLayerOld";
-            this.txtLayerOld.Size = new System.Drawing.Size(231, 20);
-            this.txtLayerOld.TabIndex = 5;
+            this.txtRefFilter.Location = new System.Drawing.Point(254, 445);
+            this.txtRefFilter.Name = "txtRefFilter";
+            this.txtRefFilter.Size = new System.Drawing.Size(231, 20);
+            this.txtRefFilter.TabIndex = 5;
+            this.txtRefFilter.Text = "X_T";
             // 
             // label3
             // 
@@ -104,17 +105,17 @@ namespace AutoUpdateRef
             this.label3.TabIndex = 6;
             this.label3.Text = "New Replacement  Reference:";
             // 
-            // txtLayerNew
+            // txtRefNew
             // 
-            this.txtLayerNew.Location = new System.Drawing.Point(188, 481);
-            this.txtLayerNew.Name = "txtLayerNew";
-            this.txtLayerNew.Size = new System.Drawing.Size(177, 20);
-            this.txtLayerNew.TabIndex = 7;
+            this.txtRefNew.Location = new System.Drawing.Point(182, 481);
+            this.txtRefNew.Name = "txtRefNew";
+            this.txtRefNew.Size = new System.Drawing.Size(183, 20);
+            this.txtRefNew.TabIndex = 7;
             // 
             // lblInfo
             // 
             this.lblInfo.AutoSize = true;
-            this.lblInfo.Location = new System.Drawing.Point(22, 520);
+            this.lblInfo.Location = new System.Drawing.Point(22, 514);
             this.lblInfo.Name = "lblInfo";
             this.lblInfo.Size = new System.Drawing.Size(43, 13);
             this.lblInfo.TabIndex = 8;
@@ -164,9 +165,9 @@ namespace AutoUpdateRef
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnUpdateRef);
             this.Controls.Add(this.lblInfo);
-            this.Controls.Add(this.txtLayerNew);
+            this.Controls.Add(this.txtRefNew);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtLayerOld);
+            this.Controls.Add(this.txtRefFilter);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lstDwgs);
             this.Controls.Add(this.btnBrowse);
@@ -191,9 +192,9 @@ namespace AutoUpdateRef
         private System.Windows.Forms.Button btnBrowse;
         private System.Windows.Forms.ListBox lstDwgs;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtLayerOld;
+        private System.Windows.Forms.TextBox txtRefFilter;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtLayerNew;
+        private System.Windows.Forms.TextBox txtRefNew;
         private System.Windows.Forms.Label lblInfo;
         private System.Windows.Forms.Button btnUpdateRef;
         private System.Windows.Forms.Button button1;

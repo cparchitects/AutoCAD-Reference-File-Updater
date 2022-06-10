@@ -2,6 +2,7 @@
 using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.EditorInput;
+using System.IO;
 
 namespace AutoUpdateRef
 {
@@ -13,14 +14,15 @@ namespace AutoUpdateRef
             RefUpdateForm layerForm = new RefUpdateForm();
             layerForm.Show();
         }
-        public void AttachingRef(string dwgPath)
+
+        public void AttachingRef(string dwgPath, string filePath, string filter)
         {
             // Get the current database and start a transaction
             Document doc = Application.DocumentManager.Open(dwgPath);
             Database acCurDb;
             Editor edt = doc.Editor;
             //doc.LockDocument();
-
+          
             using (DocumentLock acLckDoc = doc.LockDocument())
             {
                 acCurDb = Application.DocumentManager.MdiActiveDocument.Database;
@@ -37,14 +39,16 @@ namespace AutoUpdateRef
                     {
                         XrefGraphNode xrNode = xg.GetXrefNode(j);
                         string nodeName = xrNode.Name;
-
-                        if (nodeName.Contains("X_T"))// need to add input from user here......
+                        
+                        if (nodeName.Contains(filter))// need to add input from user here......
                         {
                             BlockTableRecord btr = (BlockTableRecord)acTrans.GetObject(xrNode.BlockTableRecordId, OpenMode.ForWrite);
 
                             acCurDb.XrefEditEnabled = true;
 
-                            string newpath = @".\Title block\X_Titleblock30x42_NBTS XXX.dwg";// new path location need to make this a selection then save in variable
+                            string newpath = filePath;
+                            string fileName = Path.GetFileName(newpath);
+                            //string newpath = @".\Title block\X_Titleblock30x42_NBTS XXX.dwg";// new path location need to make this a selection then save in variable
                             btr.Name = "X_Titleblock30x42_NBTS XXX";//need to create this from the new path element then save in variable
                             btr.PathName = newpath;
                             break;
