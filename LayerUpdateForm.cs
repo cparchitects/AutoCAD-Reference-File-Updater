@@ -66,5 +66,10 @@ namespace AutoUpdateRef
             }
             lblInfo.Text = "Updating of Reference files completed successfuly!";
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

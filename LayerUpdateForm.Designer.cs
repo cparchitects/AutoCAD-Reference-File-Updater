@@ -57,15 +57,15 @@ namespace AutoUpdateRef
             // 
             this.txtPath.Location = new System.Drawing.Point(25, 98);
             this.txtPath.Name = "txtPath";
-            this.txtPath.Size = new System.Drawing.Size(331, 20);
+            this.txtPath.Size = new System.Drawing.Size(343, 20);
             this.txtPath.TabIndex = 1;
             this.txtPath.Text = "D:\\Programming\\AutoCAD\\xrefUpdate";
             // 
             // btnBrowse
             // 
-            this.btnBrowse.Location = new System.Drawing.Point(362, 78);
+            this.btnBrowse.Location = new System.Drawing.Point(374, 78);
             this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(123, 40);
+            this.btnBrowse.Size = new System.Drawing.Size(111, 40);
             this.btnBrowse.TabIndex = 2;
             this.btnBrowse.Text = "Browse";
             this.btnBrowse.UseVisualStyleBackColor = true;
@@ -84,15 +84,15 @@ namespace AutoUpdateRef
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(22, 448);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(220, 13);
+            this.label2.Size = new System.Drawing.Size(226, 13);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Enter Reference File Name Charaters to filter:";
+            this.label2.Text = "Enter Reference File Name Characters to filter:";
             // 
             // txtLayerOld
             // 
-            this.txtLayerOld.Location = new System.Drawing.Point(251, 445);
+            this.txtLayerOld.Location = new System.Drawing.Point(254, 445);
             this.txtLayerOld.Name = "txtLayerOld";
-            this.txtLayerOld.Size = new System.Drawing.Size(234, 20);
+            this.txtLayerOld.Size = new System.Drawing.Size(231, 20);
             this.txtLayerOld.TabIndex = 5;
             // 
             // label3
@@ -137,12 +137,13 @@ namespace AutoUpdateRef
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Location = new System.Drawing.Point(374, 479);
+            this.button1.Location = new System.Drawing.Point(374, 481);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(111, 23);
+            this.button1.Size = new System.Drawing.Size(111, 20);
             this.button1.TabIndex = 10;
             this.button1.Text = "Select New Ref File";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // pictureBox1
             // 
