@@ -59,7 +59,6 @@ namespace AutoUpdateRef
             this.txtPath.Name = "txtPath";
             this.txtPath.Size = new System.Drawing.Size(343, 20);
             this.txtPath.TabIndex = 1;
-            this.txtPath.Text = "D:\\Programming\\AutoCAD\\xrefUpdate";
             // 
             // btnBrowse
             // 
