@@ -47,9 +47,10 @@ namespace AutoUpdateRef
                             acCurDb.XrefEditEnabled = true;
 
                             string newpath = filePath;
-                            string fileName = Path.GetFileName(newpath);
+                            string fileName = Path.GetFileNameWithoutExtension(newpath);
                             //string newpath = @".\Title block\X_Titleblock30x42_NBTS XXX.dwg";// new path location need to make this a selection then save in variable
-                            btr.Name = "X_Titleblock30x42_NBTS XXX";//need to create this from the new path element then save in variable
+                            //btr.Name = "X_Titleblock30x42_NBTS XXX";//need to create this from the new path element then save in variable
+                            btr.Name = fileName;
                             btr.PathName = newpath;
                             break;
                         }
