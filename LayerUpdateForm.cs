@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Dialogs;
 
+
+
+
 namespace AutoUpdateRef
 {
     
@@ -56,6 +59,8 @@ namespace AutoUpdateRef
                 string[] files = Directory.GetFiles(docPath, "*.dwg");
 
                 PopulateListbox(docPath);
+                //adding sharepoint tracker information
+                SharePointConnectApp.SharePointAdd.AddItem("Sprouts Update Reference", "Autocad", "3", Environment.UserName, "22", "Sprouts Testing", "222222", "2.5");
             }
         }
         private void btnUpdateRef_Click(object sender, EventArgs e)
@@ -81,6 +86,7 @@ namespace AutoUpdateRef
             
             toolStripStatusLabel1.Text = "Updating of Reference files completed successfuly!";
             toolStripStatusLabel1.ForeColor = Color.Green;
+            
         }
 
         
@@ -106,6 +112,7 @@ namespace AutoUpdateRef
                 }
             }
         }
+        
     }
     public static class Globals
     {
@@ -115,5 +122,6 @@ namespace AutoUpdateRef
         public static String ReferenceFilter; // Modifiable Global varibles
 
     }
+ 
 
 }

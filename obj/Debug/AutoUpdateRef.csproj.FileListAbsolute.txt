@@ -14,6 +14,7 @@ D:\Users\Steven\Documents\GitHub\AutoCAD-Reference-File-Updater\obj\Debug\AutoUp
 D:\Users\Steven\Documents\GitHub\AutoCAD-Reference-File-Updater\obj\Debug\AutoUpdateRef.csproj.CoreCompileInputs.cache
 D:\Users\Steven\Documents\GitHub\AutoCAD-Reference-File-Updater\obj\Debug\AutoUpdateRef.dll
 D:\Users\Steven\Documents\GitHub\AutoCAD-Reference-File-Updater\obj\Debug\AutoUpdateRef.pdb
+D:\Users\Steven\Documents\GitHub\AutoCAD-Reference-File-Updater\obj\Debug\AutoUpdateRef.csproj.AssemblyReference.cache
 D:\Users\Steven\Documents\GitHub\AutoCAD-Reference-File-Updater\bin\Debug\Microsoft.WindowsAPICodePack.dll
 D:\Users\Steven\Documents\GitHub\AutoCAD-Reference-File-Updater\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
 D:\Users\Steven\Documents\GitHub\AutoCAD-Reference-File-Updater\bin\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.dll
@@ -23,5 +24,8 @@ D:\Users\Steven\Documents\GitHub\AutoCAD-Reference-File-Updater\bin\Debug\Micros
 D:\Users\Steven\Documents\GitHub\AutoCAD-Reference-File-Updater\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
 D:\Users\Steven\Documents\GitHub\AutoCAD-Reference-File-Updater\bin\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.pdb
 D:\Users\Steven\Documents\GitHub\AutoCAD-Reference-File-Updater\bin\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.xml
-D:\Users\Steven\Documents\GitHub\AutoCAD-Reference-File-Updater\obj\Debug\AutoUpdateRef.csproj.AssemblyReference.cache
 D:\Users\Steven\Documents\GitHub\AutoCAD-Reference-File-Updater\obj\Debug\AutoUpdateRef.csproj.CopyComplete
+D:\Users\Steven\Documents\GitHub\AutoCAD-Reference-File-Updater\bin\Debug\SharePointConnectApp.dll
+D:\Users\Steven\Documents\GitHub\AutoCAD-Reference-File-Updater\bin\Debug\Microsoft.Identity.Client.dll
+D:\Users\Steven\Documents\GitHub\AutoCAD-Reference-File-Updater\bin\Debug\Microsoft.Identity.Client.xml
+D:\Users\Steven\Documents\GitHub\AutoCAD-Reference-File-Updater\bin\Debug\SharePointConnectApp.pdb

@@ -2,7 +2,7 @@
 using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.EditorInput;
-using System.IO;
+
 
 namespace AutoUpdateRef
 {
@@ -62,7 +62,6 @@ namespace AutoUpdateRef
                     acTrans.Commit();
                 }
             }
-
 
             // Save the active drawing
             acCurDb.SaveAs(dwgPath, DwgVersion.Current);
