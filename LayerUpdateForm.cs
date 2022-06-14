@@ -59,8 +59,7 @@ namespace AutoUpdateRef
                 string[] files = Directory.GetFiles(docPath, "*.dwg");
 
                 PopulateListbox(docPath);
-                //adding sharepoint tracker information
-                SharePointConnectApp.SharePointAdd.AddItem("Sprouts Update Reference", "Autocad", "3", Environment.UserName, "22", "Sprouts Testing", "222222", "2.5");
+
             }
         }
         private void btnUpdateRef_Click(object sender, EventArgs e)
@@ -76,20 +75,34 @@ namespace AutoUpdateRef
                 toolStripStatusLabel1.Text = "Processing ( " + i.ToString() + " of " + totalCount + ") : " + dwgFile;
                 toolStripStatusLabel1.ForeColor = Color.Green;
 
-                if (Globals.newReferenceName != null | Globals.ReferenceFilter != null | Globals.newReferencePath != null)
+                if (txtRefName.Text != null | txtRefFilter.Text != null | txtRefPath.Text != null)
                 {
-                    util.AttachingRef(dwgFile, Globals.newReferenceName, Globals.newReferencePath, Globals.ReferenceFilter);
+                    util.AttachingRef(dwgFile, txtRefName.Text, txtRefPath.Text, txtRefFilter.Text);
                 }
 
                 i += 1;
             }
+
             
             toolStripStatusLabel1.Text = "Updating of Reference files completed successfuly!";
             toolStripStatusLabel1.ForeColor = Color.Green;
+            try
+            {
+                //adding sharepoint tracker information
+                double totalTimeSaved = lstDwgs.Items.Count * 2.3; //calculate time saved per unit times number of files
+                SharePointConnectApp.SharePointAdd.AddItem("Sprouts Update Reference", "Autocad", totalTimeSaved.ToString(), Environment.UserName, "22", "Sprouts Testing", "222222", "3.0");
+
+
+            }
+            catch (Exception)
+            {
+
+                return;
+            }
             
         }
 
-        
+
         private void SelectNewRF_Click(object sender, EventArgs e)// get the reference file name and path
 
         {
@@ -102,13 +115,14 @@ namespace AutoUpdateRef
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    //Get the path of specified file
-                    string filePath = openFileDialog.FileName;
+                    //Get the path of specified file D:\Programming\AutoCAD\ARCH
+                    string filePath = openFileDialog.FileName;//"D:\Programming\AutoCAD\Base_Files\X_Titleblock30x42_NBTS XXX.dwg" 
                     Globals.newReferenceName = Path.GetFileNameWithoutExtension(filePath);
-                    lblRefName.Text = Globals.newReferenceName;
+                    txtRefName.Text = Globals.newReferenceName;
                     // newReferencePath then repalce dwgsPath with "."
-                    Globals.newReferencePath = filePath.Replace(Globals.DwgsFilePath, ".");
-                    lblRefPath.Text = Globals.newReferencePath;
+                    string basePath = Globals.DwgsFilePath.Replace("ARCH", @"Base_files\");
+                    Globals.newReferencePath = @"..\Base_Files\" + Globals.newReferenceName;//filePath.Replace(@"D:\Programming\AutoCAD", "..");// ..\Base_Files\X_Titleblock30x42_NBTS XXX.dwg
+                    txtRefPath.Text = Globals.newReferencePath;// D:\Programming\AutoCAD\ARCHX_Titleblock30x42_NBTS XXX  ....D:\Programming\AutoCAD\Base_Files\X_Titleblock30x42_NBTS XXX.dwg
                 }
             }
         }
