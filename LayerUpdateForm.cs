@@ -108,7 +108,7 @@ namespace AutoUpdateRef
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.InitialDirectory = Globals.DwgsFilePath;
                 openFileDialog.Filter = "dwg files (*.dwg)|*.dwg";
                 openFileDialog.FilterIndex = 2;
                 openFileDialog.RestoreDirectory = true;
