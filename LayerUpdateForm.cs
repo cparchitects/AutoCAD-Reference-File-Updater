@@ -125,8 +125,7 @@ namespace AutoUpdateRef
                     txtRefPath.Text = Globals.newReferencePath;// D:\Programming\AutoCAD\ARCHX_Titleblock30x42_NBTS XXX  ....D:\Programming\AutoCAD\Base_Files\X_Titleblock30x42_NBTS XXX.dwg
                 }
             }
-        }
-        
+        }        
     }
     public static class Globals
     {
@@ -134,8 +133,6 @@ namespace AutoUpdateRef
         public static String newReferenceName; // Modifiable Global varibles
         public static String newReferencePath; // Modifiable Global varibles
         public static String ReferenceFilter; // Modifiable Global varibles
-
-    }
- 
+    } 
 
 }

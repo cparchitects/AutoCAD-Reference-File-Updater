@@ -19,26 +19,15 @@ namespace AutoUpdateRef
         {
             try
             {
-                // Get the current database and start a transaction
-                Document doc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.Open(dwgPath);
-                Database acCurDb;
-                Editor edt = doc.Editor;
-                Database acCurDB = new Database(false, true);
-
-
-                //doc.LockDocument();
-
-                using (DocumentLock acLckDoc = doc.LockDocument())
+                using (Database db = new Database(false, true))
                 {
-                    acCurDb = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument.Database;
-
-                    acCurDb.ResolveXrefs(true, false);
-                    using (Transaction acTrans = acCurDb.TransactionManager.StartTransaction())
+                    db.ReadDwgFile(dwgPath, FileOpenMode.OpenForReadAndAllShare, false, null);
+                    using (Transaction tr = db.TransactionManager.StartTransaction())
                     {
-                        XrefGraph xg = acCurDb.GetHostDwgXrefGraph(true);
+                        XrefGraph xg = db.GetHostDwgXrefGraph(true);
 
                         int xrefcount = xg.NumNodes;
-                        edt.WriteMessage("\nNumber of references: " + xrefcount.ToString());// print the count of reference files attached
+                        //edt.WriteMessage("\nNumber of references: " + xrefcount.ToString());// print the count of reference files attached
 
                         for (int j = 0; j < xrefcount; j++)
                         {
@@ -47,52 +36,24 @@ namespace AutoUpdateRef
 
                             if (nodeName.Contains(filter))// need to add input from user here......
                             {
-                                BlockTableRecord btr = (BlockTableRecord)acTrans.GetObject(xrNode.BlockTableRecordId, OpenMode.ForWrite);
+                                BlockTableRecord btr = (BlockTableRecord)tr.GetObject(xrNode.BlockTableRecordId, OpenMode.ForWrite);
 
-                                acCurDb.XrefEditEnabled = true;
+                                db.XrefEditEnabled = true;
                                 btr.Name = refName;
                                 btr.PathName = refPath;
                                 break;
                             }
-                            //// this section not needed just left in for future reference
-                            //if (xrNode.XrefStatus == XrefStatus.FileNotFound)
-                            //{
-                            //    ObjectId detachid = xrNode.BlockTableRecordId;                        
-                            //    acCurDb.DetachXref(detachid);
-                            //    edt.WriteMessage("\nDetached successfully");
-                            //    break;
-                            //}
                         }
-                        // Save the new objects to the database
-                        acTrans.Commit();
+                        tr.Commit();
                     }
+                    db.SaveAs(dwgPath, DwgVersion.Current);
                 }
-
-                // Save the active drawing
-                acCurDb.SaveAs(dwgPath, DwgVersion.Current);
-                doc.CloseAndDiscard();
-
             }
             catch (System.Exception ex)
             {
-                
                 string error = ex.Message;
                 return;
-                ////DialogResult d;
-                ////d= MessageBox.Show($"Please verify that { dwgPath} is not open!", "Huston we have a problem!", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1,MessageBoxOptions.DefaultDesktopOnly);
-
-                //////d = MessageBox.Show($"Please verify that {dwgPath} is not open!", "Error Updating File", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Information);
-                ////if (d == DialogResult.OK)
-                ////{
-
-                ////    Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument.CloseAndDiscard();
-                ////    System.Windows.Forms.Application.Exit();
-                ////    System.Environment.Exit(0);
-                ////}
-
-
-            }
-            
+            }            
         }
     }
 }
