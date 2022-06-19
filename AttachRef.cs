@@ -3,11 +3,13 @@ using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.EditorInput;
 using System.Windows.Forms;
+using System;
+using System.Linq;
 
 namespace AutoUpdateRef
 {
     public class AttachRef
-    {        
+    {
         [CommandMethod("CPUR")]
         public void AttachingExternalReference()
         {
@@ -53,7 +55,49 @@ namespace AutoUpdateRef
             {
                 string error = ex.Message;
                 return;
-            }            
+            }
+        }
+        public void GetTitleProjectNameNumber(string titleBlockDwgPath)// this is to get the text project name and number from the titleblock dwg for tracking
+        {
+            try
+            {
+                using (Database titleDB = new Database(false, true))
+                {
+                    titleDB.ReadDwgFile(titleBlockDwgPath, FileOpenMode.OpenForReadAndAllShare, false, null);
+                    using (Transaction tr = titleDB.TransactionManager.StartTransaction())
+                    {
+                        var model = (BlockTableRecord)tr.GetObject(SymbolUtilityServices.GetBlockModelSpaceId(titleDB), OpenMode.ForRead);
+                        
+                        foreach (ObjectId id in model)
+                        {
+                            if (id.ObjectClass.DxfName == "TEXT")
+                            {
+                                var textProjectNumber = (DBText)tr.GetObject(id, OpenMode.ForRead);                                
+                                int projectNumberx = Convert.ToInt32(textProjectNumber.Position.X * 1000);
+                                int projectNumbery = Convert.ToInt32(textProjectNumber.Position.Y * 1000);
+                                if (projectNumberx >= 40630 && projectNumberx <= 40650 && projectNumbery >= 1370 && projectNumbery <= 1385)
+                                {
+                                    Globals.projectNumber = textProjectNumber.TextString;
+                                }
+                                var textProjectName = (DBText)tr.GetObject(id, OpenMode.ForRead);
+                                int projectNameX = Convert.ToInt32((textProjectName.Position.X) * 1000);
+                                int projectNameY = Convert.ToInt32((textProjectName.Position.Y) * 1000);
+                                if (projectNameX >= 39500 && projectNameX <= 39509 && projectNameY >= 3450 && projectNameY <= 3460)
+                                {
+                                    Globals.projectName = textProjectName.TextString;
+                                }
+                            }
+
+                        }
+                        tr.Commit();
+                    }
+                }
+            }
+            catch (System.Exception ex)
+            {
+                string error = ex.Message;
+                return;
+            }
         }
     }
 }

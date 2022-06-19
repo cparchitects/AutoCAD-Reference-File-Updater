@@ -40,7 +40,7 @@ namespace AutoUpdateRef
 
                 // Load all the files into the listbox
                 lstDwgs.DataSource = files;
-                toolStripStatusLabel1.Text = "Total number of drawingings = " + lstDwgs.Items.Count;
+                toolStripStatusLabel1.Text = "Total number of drawings = " + lstDwgs.Items.Count.ToString();
             }
         }
         
@@ -64,6 +64,8 @@ namespace AutoUpdateRef
         }
         private void btnUpdateRef_Click(object sender, EventArgs e)
         {
+            DateTime start = DateTime.Now;
+     
             int i = 1;
             AttachRef util = new AttachRef();
             int totalCount = lstDwgs.Items.Count;
@@ -71,8 +73,9 @@ namespace AutoUpdateRef
 
             // Loop through
             foreach (string dwgFile in lstDwgs.Items)
-            {                
-                toolStripStatusLabel1.Text = "Processing ( " + i.ToString() + " of " + totalCount + ") : " + dwgFile;
+            {
+                toolStripStatusLabel1.Text = "";
+                toolStripStatusLabel1.Text = "Processing: " + i.ToString() + " of " + totalCount.ToString()  + dwgFile.ToString();
                 toolStripStatusLabel1.ForeColor = Color.Green;
 
                 if (txtRefName.Text != null | txtRefFilter.Text != null | txtRefPath.Text != null)
@@ -86,11 +89,15 @@ namespace AutoUpdateRef
             
             toolStripStatusLabel1.Text = "Updating of Reference files completed successfuly!";
             toolStripStatusLabel1.ForeColor = Color.Green;
+            // Get the script run time
+            TimeSpan timeDiff = DateTime.Now - start;
+            string runtime = timeDiff.TotalSeconds.ToString();
             try
             {
+                
                 //adding sharepoint tracker information
                 double totalTimeSaved = lstDwgs.Items.Count * 2.3; //calculate time saved per unit times number of files
-                SharePointConnectApp.SharePointAdd.AddItem("Sprouts Update Reference", "Autocad", totalTimeSaved.ToString(), Environment.UserName, "22", "Sprouts Testing", "222222", "3.0");
+                SharePointConnectApp.SharePointAdd.AddItem("Sprouts Update Reference", "Autocad", totalTimeSaved.ToString(), Environment.UserName, "22", Globals.projectName, Globals.projectNumber, runtime);
 
 
             }
@@ -106,6 +113,7 @@ namespace AutoUpdateRef
         private void SelectNewRF_Click(object sender, EventArgs e)// get the reference file name and path
 
         {
+
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.InitialDirectory = Globals.DwgsFilePath;
@@ -118,11 +126,14 @@ namespace AutoUpdateRef
                     //Get the path of specified file D:\Programming\AutoCAD\ARCH
                     string filePath = openFileDialog.FileName;//"D:\Programming\AutoCAD\Base_Files\X_Titleblock30x42_NBTS XXX.dwg" 
                     Globals.newReferenceName = Path.GetFileNameWithoutExtension(filePath);
+                    Globals.titleBlockDwgPath = filePath;// get titleblock drawing to extract the project name and number
                     txtRefName.Text = Globals.newReferenceName;
                     // newReferencePath then repalce dwgsPath with "."
-                    string basePath = Globals.DwgsFilePath.Replace("ARCH", @"Base_files\");
+                    //string basePath = Globals.DwgsFilePath.Replace("ARCH", @"Base_files\");//not used???? may need to remove??
                     Globals.newReferencePath = @"..\Base_Files\" + Globals.newReferenceName;//filePath.Replace(@"D:\Programming\AutoCAD", "..");// ..\Base_Files\X_Titleblock30x42_NBTS XXX.dwg
                     txtRefPath.Text = Globals.newReferencePath;// D:\Programming\AutoCAD\ARCHX_Titleblock30x42_NBTS XXX  ....D:\Programming\AutoCAD\Base_Files\X_Titleblock30x42_NBTS XXX.dwg
+                    AttachRef util = new AttachRef(); 
+                    util.GetTitleProjectNameNumber(Globals.titleBlockDwgPath);
                 }
             }
         }        
@@ -133,6 +144,10 @@ namespace AutoUpdateRef
         public static String newReferenceName; // Modifiable Global varibles
         public static String newReferencePath; // Modifiable Global varibles
         public static String ReferenceFilter; // Modifiable Global varibles
+        public static String titleBlockDwgPath; // Modifiable Global varibles
+        public static String projectName; // Modifiable Global varibles
+        public static String projectNumber; // Modifiable Global varibles
+        public static List<string> titleBlockText; // Modifiable Global varibles
     } 
 
 }
